@@ -1,0 +1,9 @@
+[
+    {
+      "name": "foo.bar.App",
+      "allDeclaredConstructors": true,
+      "allPublicConstructors": true,
+      "allDeclaredMethods": true,
+      "allPublicMethods": true
+    }
+  ]

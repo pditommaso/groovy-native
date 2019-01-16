@@ -1,0 +1,40 @@
+
+plugins {
+    // Apply the groovy plugin to add support for Groovy
+    id 'groovy'
+    // Apply the application plugin to add support for building an application
+    id 'application'
+    id "com.palantir.graal" version "0.2.0-18-g5220205"
+}
+
+repositories {
+    // Use jcenter for resolving your dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+}
+
+dependencies {
+    // Use the latest Groovy version for building this library
+    implementation 'org.codehaus.groovy:groovy:2.5.5'
+    
+    // Use the awesome Spock testing and specification framework
+    testImplementation 'org.spockframework:spock-core:1.2-groovy-2.5'
+}
+
+compileGroovy.groovyOptions.configurationScript = file('config/groovyc.groovy')
+
+// Define the main class for the application
+mainClassName = 'foo.bar.App'
+
+graal {
+    mainClass 'foo.bar.App'
+    outputName 'hello-graal'
+    graalVersion '1.0.0-rc11'
+
+    option '--enable-url-protocols=https'
+    option '--allow-incomplete-classpath'
+    option '-H:+AllowVMInspection'
+    option '-H:+ReportUnsupportedElementsAtRuntime'
+    option '-H:ReflectionConfigurationFiles=config/dgm.json,config/main.json'
+    option '--no-server'
+}
